@@ -22,7 +22,9 @@ def main():
     printBoard(startingBoard)
 
     #Run AC3 Algorithm
+    print("Calling AC3 Algorithmn")
     resolvedBoard = AC3Functions.getAC3(board)
+    print("AC3 Finished")
     if(resolvedBoard == None):
         print("Board Not solvable!")
         return None
@@ -73,7 +75,10 @@ def printBoard(board):
 
     for i in range(0, len(board)):
         for k in range(0, len(board[i])):
-            print(board[i][k], " ", end="")
+            if(board[i][k] is None):
+                print("_  ", end="")
+            else:
+                print(board[i][k], " ", end="")
 
         print()
 

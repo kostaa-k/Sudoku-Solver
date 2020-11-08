@@ -43,12 +43,12 @@ class Board():
             totalValues.append(x)
         #Remove values from row
         for j in range(0, len(self.board)):
-            if (self.board[i][j] is not None):
+            if (self.board[i][j] is not None and j!=k):
                 if(self.board[i][j] in totalValues):
                     totalValues.remove(self.board[i][j])
 
         for j in range(0, len(self.board[i])):
-            if(self.board[j][k] is not None):
+            if(self.board[j][k] is not None and i!=j):
                if(self.board[j][k] in totalValues):
                     totalValues.remove(self.board[j][k])
 
@@ -58,7 +58,8 @@ class Board():
             for x in range(boxI, boxI+3):
                 for y in range(boxK, boxK+3):
                     if(self.board[x][y] is not None and self.board[x][y] in totalValues):
-                        totalValues.remove(self.board[x][y])
+                        if(x != i and y !=k):
+                            totalValues.remove(self.board[x][y])
     
         return totalValues
     
@@ -107,6 +108,55 @@ class Board():
                     return False
 
         return True
+
+
+    def getNeighborTiles(self, tile):
+
+        neighborTiles = []
+        
+        i = tile[0]
+        k = tile[1]
+
+        for j in range(0, len(self.board)):
+            if (self.board[i][j] is None and j!= k):
+                if((i, j) not in neighborTiles):
+                    neighborTiles.append((i, j))
+
+        for j in range(0, len(self.board[i])):
+            if(self.board[j][k] is None and j!= i):
+               if((j,k) not in  neighborTiles):
+                    neighborTiles.append((j, k))
+
+
+        if(self.board[i][k] is None):
+            boxI, boxK = self.getBoxCoordinates(i, k)
+            for x in range(boxI, boxI+3):
+                for y in range(boxK, boxK+3):
+                    if(self.board[x][y] is None and (x,y) not in neighborTiles):
+                        neighborTiles.append((x,y))
+
+
+        return neighborTiles
+
+
+    def isCompleteBoardSolved(self):
+
+        completeTiles = 0
+        for i in range(0, len(self.board)):
+            for k in range(0, len(self.board[i])):
+                if(self.board[i][k] is None):
+                    return False
+
+                tileDomain = self.getDomainOfTile(i, k)
+                if(len(tileDomain) == 1 and tileDomain[0] == self.board[i][k]):
+                    completeTiles = completeTiles+1
+                else:
+                    print(i, k, tileDomain)
+                    return False
+
+        return True
+                
+
 
 class ArcQueue():
     
