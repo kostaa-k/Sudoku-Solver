@@ -58,7 +58,7 @@ class Board():
         return len(self.domainDict[theTile])
 
 
-    def getBoxCoordinates(i, k, boxSize=3):
+    def getBoxCoordinates(self, i, k, boxSize=3):
         newI = i-(i%boxSize)
         newK = k-(k%boxSize)
         
