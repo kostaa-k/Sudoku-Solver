@@ -6,12 +6,12 @@ class Board():
     domainDict = {}
     board = None
     
-    def __init__(self, board):
+    def __init__(self, board, getDomain=True):
         self.board = board
+        self.getDomainOfBoard()
         
         
     def getDomainOfBoard(self, possibleValues=[1,2,3,4,5,6,7,8,9]):
-        
         for i in range(0, len(self.board)):
             for k in range(0, len(self.board[i])):
                 if(self.board[i][k] is None):
@@ -64,6 +64,10 @@ class Board():
         
         return newI, newK
 
+    def printDomain(self):
+        for i in range(0, len(self.board)):
+            for k in range(0, len(self.board[i])):
+                print("Domain of: ", (i, k), " :  ", self.domainDict[(i, k)])
 
 class ArcQueue():
     

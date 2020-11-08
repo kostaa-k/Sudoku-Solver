@@ -39,8 +39,8 @@ def revise(board, xI, xJ):
     domainXI = deepcopy(board.domainDict[xI])
     domainXJ = deepcopy(board.domainDict[xJ])
     
-    print("domain of xI: ", domainXI)
-    print("domain of XJ: ", domainXJ)
+    #print("domain of xI: ", domainXI)
+    #print("domain of XJ: ", domainXJ)
     
     revised = False
     for val in domainXI:
