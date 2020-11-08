@@ -3,12 +3,12 @@ import os
 import AC3Functions
 from AuxClasses import ArcQueue
 from AuxClasses import Board
-
+import BackTracking
 
 def main():
 
     #Get currentDirectory and filename
-    fileName = "top_left_one.txt"
+    fileName = "board1.txt"
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
     fileName = os.path.join(currentDirectory,"../test_boards/"+fileName)
 
@@ -27,7 +27,12 @@ def main():
         print("Board Not solvable!")
         return None
 
-    resolvedBoard.printDomain()
+    #resolvedBoard.printDomain()
+    print()
+    print()
+    print("Calling backtracking")
+    print()
+    BackTracking.backTrackHelper(board)
     
 
 def parseInputFile(fileName):
@@ -53,6 +58,17 @@ def parseInputFile(fileName):
 
     return theBoard
     
+
+#This is to make sure board is correct size, and fits possible values
+def checkBoard(board, boardSize=9, possibleValues=[1,2,3,4,5,6,7,8,9]):
+
+    for i in range(0, len(board)):
+        if(len(board[i]) != boardSize):
+            return False
+
+    return True
+
+
 def printBoard(board):
 
     for i in range(0, len(board)):

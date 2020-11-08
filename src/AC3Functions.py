@@ -57,8 +57,6 @@ def revise(board, xI, xJ):
     return revised, board
 
 
-
-
 def initializeArcs(board):
     allArcs = {}
     for i in range(0, len(board)):
@@ -75,7 +73,6 @@ def addArcToMap(xI, xJ, arcMap):
     return arcMap
 
 def getRowColumnArcs(board, allArcs):
-    
     
     for i in range(0, len(board)):
         for k in range(0, len(board)):

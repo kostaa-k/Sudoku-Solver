@@ -5,12 +5,28 @@ class Board():
     
     domainDict = {}
     board = None
+    emptyTiles = []
     
     def __init__(self, board, getDomain=True):
+        self.domainDict = {}
         self.board = board
         self.getDomainOfBoard()
+        self.emptyTiles = []
+        self.setEmptyTiles()
+
+    def setEmptyTiles(self):
+        for i in range(0, len(self.board)):
+            for k in range(0, len(self.board[i])):
+                if(self.board[i][k] is None):
+                    self.emptyTiles.append((i, k))
+
+    def isViolated(self):
+        for x in self.emptyTiles:
+            if(len(self.domainDict[x])== 0):
+                return True
         
-        
+        return False
+
     def getDomainOfBoard(self, possibleValues=[1,2,3,4,5,6,7,8,9]):
         for i in range(0, len(self.board)):
             for k in range(0, len(self.board[i])):
@@ -68,6 +84,29 @@ class Board():
         for i in range(0, len(self.board)):
             for k in range(0, len(self.board[i])):
                 print("Domain of: ", (i, k), " :  ", self.domainDict[(i, k)])
+
+    def printBoard(self):
+        for i in range(0, len(self.board)):
+            for k in range(0, len(self.board[i])):
+                print(self.board[i][k], " ", end="")
+
+            print()
+
+        print()
+
+
+    def setValueOfTile(self, xI, value):
+        self.board[xI[0]][xI[1]] = value
+        self.emptyTiles.remove(xI)
+
+
+    def isSolved(self):
+        for i in range(0, len(self.board)):
+            for k in range(0, len(self.board[i])):
+                if(self.board[i][k] is None):
+                    return False
+
+        return True
 
 class ArcQueue():
     
