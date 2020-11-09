@@ -8,7 +8,7 @@ import BackTracking
 def main():
 
     #Get currentDirectory and filename
-    fileName = "board2.txt"
+    fileName = "board1.txt"
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
     fileName = os.path.join(currentDirectory,"../test_boards/"+fileName)
 

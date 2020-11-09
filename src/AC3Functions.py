@@ -24,7 +24,11 @@ def AC3(board, arcQueue):
         # - make sure domain is not empty (if it is then unsolvable)
         # - getNeighbors of Xi -> and add them to the queue
     
+    numSteps = 0
     while(arcQueue.isEmpty() == False):
+        
+        numSteps+=1
+        print("Queue length at step:", numSteps, arcQueue.getQueueLength())
         currentArc = arcQueue.popFromQueue()
         wasRevised, board = revise(board, currentArc[0], currentArc[1])
         if (wasRevised == True):
