@@ -8,7 +8,7 @@ import BackTracking
 def main():
 
     #Get currentDirectory and filename
-    fileName = "board1.txt"
+    fileName = "board2.txt"
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
     fileName = os.path.join(currentDirectory,"../test_boards/"+fileName)
 
@@ -50,8 +50,9 @@ def parseInputFile(fileName):
         currentRow = []
         splitLine = line.split(",")
         for x in splitLine:
-            if(x.isnumeric()):
-                currentRow.append((int)(x))
+            xSrtipped = x.strip()
+            if(xSrtipped.isnumeric()):
+                currentRow.append((int)(xSrtipped))
             else:
                 currentRow.append(None)
 
