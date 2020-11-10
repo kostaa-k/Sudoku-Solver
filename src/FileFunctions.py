@@ -14,6 +14,7 @@ def callBackTrackingInC(domainDict, fileName, boardSize=9):
     os.system("g++ BackTrackSolver.cpp -o BackTrackSolver && BackTrackSolver.exe "+fileName)
     print(currentDirectory)
     os.system("del "+domainFileName)
+    os.system("del BackTrackSolver.exe")
 
 
 def writeDomainsToFile(domainDict, boardSize=9):
