@@ -28,7 +28,7 @@ def AC3(board, arcQueue):
     while(arcQueue.isEmpty() == False):
         
         numSteps+=1
-        print("Queue length at step:", numSteps, arcQueue.getQueueLength())
+        #print("Queue length at step:", numSteps, arcQueue.getQueueLength())
         currentArc = arcQueue.popFromQueue()
         wasRevised, board = revise(board, currentArc[0], currentArc[1])
         if (wasRevised == True):

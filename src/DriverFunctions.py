@@ -4,13 +4,16 @@ import AC3Functions
 from AuxClasses import ArcQueue
 from AuxClasses import Board
 import BackTracking
+import FileFunctions
+
+engine = "C"
 
 def main():
 
     #Get currentDirectory and filename
-    fileName = "board1.txt"
+    originalFileName = "board2.txt"
     currentDirectory = os.path.dirname(os.path.realpath(__file__))
-    fileName = os.path.join(currentDirectory,"../test_boards/"+fileName)
+    fileName = os.path.join(currentDirectory,"../test_boards/"+originalFileName)
 
     #2d Array of board, with None in empty places
     startingBoard = parseInputFile(fileName)
@@ -29,12 +32,19 @@ def main():
         print("Board Not solvable!")
         return None
 
-    #resolvedBoard.printDomain()
+
     print()
     print()
     print("Calling backtracking")
     print()
-    BackTracking.backTrackHelper(board)
+
+    if(engine.lower() == "c"):
+        FileFunctions.callBackTrackingInC(resolvedBoard.domainDict, originalFileName)
+    else:
+        BackTracking.backTrackHelper(board)
+    
+    #resolvedBoard.printDomain()
+    #BackTracking.backTrackHelper(board)
     
 
 def parseInputFile(fileName):
